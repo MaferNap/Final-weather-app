@@ -154,3 +154,11 @@ li:hover {
 .week small {
   color: #44a6f5;
 }
+.footer {
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  font-family: "Courier New", Courier, monospace;
+  position: relative;
+  bottom: -40px;
+}
