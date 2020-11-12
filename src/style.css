@@ -16,6 +16,8 @@
   list-style-type: none;
   padding: 0px;
   text-align: center;
+  position: relative;
+  top: 20px;
 }
 li {
   display: block;
@@ -23,17 +25,19 @@ li {
   width: 60%;
   background: #7f849e;
   border: solid;
-  border-color: #596aca;
+  border-color: #7f849e;
   border-radius: 7px;
   color: #ffffff;
   padding: 3px 0 0;
-  margin: 7px auto;
+  margin: 10px auto;
   transition: ease-in-out 200ms;
 }
 li:hover {
   background: #ffffff;
   cursor: pointer;
   color: #7f849e;
+  border-color: #ffffff;
+  font-size: 18px;
 }
 .weatherSearch {
   padding: 25px 0;
@@ -78,6 +82,7 @@ li:hover {
 .locationButton:hover {
   background: #ffffff;
   color: #036ec5;
+  font-size: 17px;
 }
 .cityline {
   display: block;
@@ -94,7 +99,7 @@ li:hover {
   margin: 0 auto;
   width: 150px;
   position: relative;
-  top: 10px;
+  top: 52px;
 }
 .changeCities {
   display: block;
@@ -104,6 +109,8 @@ li:hover {
   border-width: 1px;
   border-color: #036ec5;
   border-radius: 4px;
+  position: relative;
+  top: 35px;
 }
 .temperature-frame {
   border: solid;
