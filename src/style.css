@@ -162,3 +162,13 @@ li:hover {
   position: relative;
   bottom: -40px;
 }
+
+.profile {
+  text-decoration: none;
+  color: #036ec5;
+}
+
+.code {
+  text-decoration: none;
+  color: #036ec5;
+}
