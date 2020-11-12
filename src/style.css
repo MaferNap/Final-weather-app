@@ -81,8 +81,7 @@ li:hover {
 }
 .cityline {
   display: block;
-  border: solid;
-  border-color: #cce2f4;
+  border: none;
   width: 150px;
   padding: 0;
   margin: 0 auto;
@@ -91,8 +90,7 @@ li:hover {
 }
 .world {
   display: block;
-  border: solid;
-  border-color: #cce2f4;
+  border: none;
   margin: 0 auto;
   width: 150px;
   position: relative;
