@@ -28,7 +28,9 @@ function getCityTemperature(event) {
 
 function displayTemperature(response) {
   let currentTemperature = Math.round(response.data.main.temp);
-  let currentWeather = response.data.weather[0].main;
+  let currentWeather = response.data.weather[0].description;
+  console.log(response.data.weather[0].main);
+  console.log(response.data.weather);
   let currentCity = response.data.name;
   let currentHumidity = response.data.main.humidity;
   let currentWind = response.data.wind.speed;
