@@ -28,8 +28,8 @@ li {
   border-color: #7f849e;
   border-radius: 7px;
   color: #ffffff;
-  padding: 3px 0 0;
-  margin: 10px auto;
+  padding: 5px 0 0;
+  margin: 13px auto;
   transition: ease-in-out 200ms;
 }
 li:hover {
