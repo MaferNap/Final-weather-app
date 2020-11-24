@@ -81,11 +81,79 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayTemperature);
 }
 
+function getLondonListTemperature() {
+  let apiKey = "88d9871371b1db4131f1d79918fff4e1";
+  let units = "metric";
+  let city = "London";
+  let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getTokyoListTemperature() {
+  let apiKey = "88d9871371b1db4131f1d79918fff4e1";
+  let units = "metric";
+  let city = "Tokyo";
+  let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getNewYorkListTemperature() {
+  let apiKey = "88d9871371b1db4131f1d79918fff4e1";
+  let units = "metric";
+  let city = "New York";
+  let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getMexicoCityListTemperature() {
+  let apiKey = "88d9871371b1db4131f1d79918fff4e1";
+  let units = "metric";
+  let city = "Mexico City";
+  let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function getRiodeJaneiroListTemperature() {
+  let apiKey = "88d9871371b1db4131f1d79918fff4e1";
+  let units = "metric";
+  let city = "Rio de janeiro";
+  let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
 let citySearchEngine = document.querySelector("#city-search");
 citySearchEngine.addEventListener("submit", getCityTemperature);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+let cityListButtonLondon = document.querySelector("#city-list-london");
+cityListButtonLondon.addEventListener("click", getLondonListTemperature);
+
+let cityListButtonTokyo = document.querySelector("#city-list-tokyo");
+cityListButtonTokyo.addEventListener("click", getTokyoListTemperature);
+
+let cityListButtonNewYork = document.querySelector("#city-list-new-york");
+cityListButtonNewYork.addEventListener("click", getNewYorkListTemperature);
+
+let cityListButtonMexicoCity = document.querySelector("#city-list-mexico-city");
+cityListButtonMexicoCity.addEventListener(
+  "click",
+  getMexicoCityListTemperature
+);
+
+let cityListButtonRiodeJaneiro = document.querySelector(
+  "#city-list-rio-de-janeiro"
+);
+cityListButtonRiodeJaneiro.addEventListener(
+  "click",
+  getRiodeJaneiroListTemperature
+);
 
 searchCity("Brussels");
 
