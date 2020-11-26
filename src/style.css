@@ -151,6 +151,15 @@ li:hover {
   font-size: 30px;
 }
 
+.temperature-frame .active {
+  cursor: default;
+  text-decoration: none;
+  color: #036ec5;
+}
+.temperature-frame .active:hover {
+  text-decoration: none;
+}
+
 .week small {
   color: #44a6f5;
 }
