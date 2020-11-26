@@ -33,17 +33,25 @@ function displayTemperature(response) {
   let currentCity = response.data.name;
   let currentHumidity = response.data.main.humidity;
   let currentWind = response.data.wind.speed;
+  let currentWeatherIcon = response.data.weather[0].icon;
 
   let displayedTemperature = document.querySelector("#current-degrees");
   let displayedWeather = document.querySelector("#current-weather");
   let displayedCity = document.querySelector("#current-city");
   let displayedHumidity = document.querySelector("#humidity");
   let displayedWind = document.querySelector("#wind");
+  let displayedWeatherIcon = document.querySelector("#icon");
+
   displayedTemperature.innerHTML = currentTemperature;
   displayedWeather.innerHTML = currentWeather;
   displayedCity.innerHTML = currentCity;
   displayedHumidity.innerHTML = currentHumidity;
   displayedWind.innerHTML = currentWind;
+  displayedWeatherIcon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png`
+  );
+  displayedWeatherIcon.setAttribute("alt", currentWeather);
 }
 
 function displayFahrenheit(event) {
