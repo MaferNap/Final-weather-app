@@ -139,9 +139,8 @@ li:hover {
   font-size: 30px;
   color: #43a5f5;
 }
-.temperature-frame i {
-  color: #036ec5;
-  font-size: 60px;
+.temperature-frame .weatherIcon {
+  width: 45%;
 }
 .temperature-frame p {
   color: #036ec5;
