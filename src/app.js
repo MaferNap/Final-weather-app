@@ -27,13 +27,13 @@ function getCityTemperature(event) {
 }
 
 function displayTemperature(response) {
-  let currentTemperature = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+  let currentTemperature = Math.round(celsiusTemperature);
   let currentWeather = response.data.weather[0].description;
-  console.log(response.data.weather[0].main);
-  console.log(response.data.weather);
   let currentCity = response.data.name;
   let currentHumidity = response.data.main.humidity;
   let currentWind = response.data.wind.speed;
+
   let displayedTemperature = document.querySelector("#current-degrees");
   let displayedWeather = document.querySelector("#current-weather");
   let displayedCity = document.querySelector("#current-city");
@@ -46,17 +46,22 @@ function displayTemperature(response) {
   displayedWind.innerHTML = currentWind;
 }
 
-//function displayFarenheit(event) {
-//event.preventDefault();
-//let currentTemperature = document.querySelector("#current-degrees");
-//currentTemperature.innerHTML = `66`;
-//}
+function displayFahrenheit(event) {
+  event.preventDefault();
+  let displayedTemperature = document.querySelector("#current-degrees");
+  celsiusDegreesDisplayed.classList.remove("active");
+  fahrenheitDegreesDisplayed.classList.add("active");
+  let fahrenheitDisplayedTemperature = (celsiusTemperature * 9) / 5 + 32;
+  displayedTemperature.innerHTML = Math.round(fahrenheitDisplayedTemperature);
+}
 
-//function displayCelsius(event) {
-//event.preventDefault();
-//let currentTemperature = document.querySelector("#current-degrees");
-//currentTemperature.innerHTML = `19`;
-//}
+function displayCelsius(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#current-degrees");
+  celsiusDegreesDisplayed.classList.add("active");
+  fahrenheitDegreesDisplayed.classList.remove("active");
+  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+}
 
 function getCurrentLocation(event) {
   event.preventDefault();
@@ -155,10 +160,12 @@ cityListButtonRiodeJaneiro.addEventListener(
   getRiodeJaneiroListTemperature
 );
 
+let celsiusTemperature = null;
+
+let fahrenheitDegreesDisplayed = document.querySelector("#fahrenheit-degrees");
+fahrenheitDegreesDisplayed.addEventListener("click", displayFahrenheit);
+
+let celsiusDegreesDisplayed = document.querySelector("#celsius-degrees");
+celsiusDegreesDisplayed.addEventListener("click", displayCelsius);
+
 searchCity("Brussels");
-
-//let farenheitDegreesDisplayed = document.querySelector("#farenheit-degrees");
-//farenheitDegreesDisplayed.addEventListener("click", displayFarenheit);
-
-//let celsiusDegreesDisplayed = document.querySelector("#celsius-degrees");
-//celsiusDegreesDisplayed.addEventListener("click", displayCelsius);
