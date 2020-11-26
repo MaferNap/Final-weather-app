@@ -26,13 +26,33 @@ function getCityTemperature(event) {
   searchCity(city);
 }
 
+function formatUpdateTime(timestamp) {
+  let lastUpdate = new Date(timestamp);
+  let lastUpdateHours = lastUpdate.getHours();
+  let lastUpdateMinutes = lastUpdate.getMinutes();
+  if (lastUpdateMinutes < 10) {
+    lastUpdateMinutes = `0 ${lastUpdateMinutes}`;
+  }
+  let daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let lastUpdateDay = daysOfWeek[lastUpdate.getDay()];
+  return `${lastUpdateDay}, ${lastUpdateHours}h${lastUpdateMinutes}`;
+}
+
 function displayTemperature(response) {
   celsiusTemperature = response.data.main.temp;
   let currentTemperature = Math.round(celsiusTemperature);
   let currentWeather = response.data.weather[0].description;
   let currentCity = response.data.name;
   let currentHumidity = response.data.main.humidity;
-  let currentWind = response.data.wind.speed;
+  let currentWind = Math.round(response.data.wind.speed);
   let currentWeatherIcon = response.data.weather[0].icon;
 
   let displayedTemperature = document.querySelector("#current-degrees");
@@ -41,6 +61,7 @@ function displayTemperature(response) {
   let displayedHumidity = document.querySelector("#humidity");
   let displayedWind = document.querySelector("#wind");
   let displayedWeatherIcon = document.querySelector("#icon");
+  let lastUpdateTime = document.querySelector("#last-update-time");
 
   displayedTemperature.innerHTML = currentTemperature;
   displayedWeather.innerHTML = currentWeather;
@@ -52,6 +73,7 @@ function displayTemperature(response) {
     `http://openweathermap.org/img/wn/${currentWeatherIcon}@2x.png`
   );
   displayedWeatherIcon.setAttribute("alt", currentWeather);
+  lastUpdateTime.innerHTML = formatUpdateTime(response.data.dt * 1000);
 }
 
 function displayFahrenheit(event) {
