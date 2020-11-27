@@ -56,7 +56,6 @@ function formatForecastHours(timestamp) {
   if (forecastUpdateMinutes < 10) {
     forecastUpdateMinutes = `0${forecastUpdateMinutes}`;
   }
-
   return `${forecastUpdateHours}h${forecastUpdateMinutes}`;
 }
 
