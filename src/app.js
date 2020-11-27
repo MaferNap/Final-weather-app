@@ -31,7 +31,7 @@ function formatUpdateTime(timestamp) {
   let lastUpdateHours = lastUpdate.getHours();
   let lastUpdateMinutes = lastUpdate.getMinutes();
   if (lastUpdateMinutes < 10) {
-    lastUpdateMinutes = `0 ${lastUpdateMinutes}`;
+    lastUpdateMinutes = `0${lastUpdateMinutes}`;
   }
   let daysOfWeek = [
     "Sunday",
@@ -43,7 +43,21 @@ function formatUpdateTime(timestamp) {
     "Saturday",
   ];
   let lastUpdateDay = daysOfWeek[lastUpdate.getDay()];
-  return `${lastUpdateDay}, ${lastUpdateHours}h${lastUpdateMinutes}`;
+  return `${lastUpdateDay}, at ${lastUpdateHours}h${lastUpdateMinutes}`;
+}
+
+function formatForecastHours(timestamp) {
+  let forecastUpdate = new Date(timestamp);
+  let forecastUpdateHours = forecastUpdate.getHours();
+  if (forecastUpdateHours < 10) {
+    forecastUpdateHours = `0${forecastUpdateHours}`;
+  }
+  let forecastUpdateMinutes = forecastUpdate.getMinutes();
+  if (forecastUpdateMinutes < 10) {
+    forecastUpdateMinutes = `0${forecastUpdateMinutes}`;
+  }
+
+  return `${forecastUpdateHours}h${forecastUpdateMinutes}`;
 }
 
 function displayTemperature(response) {
@@ -106,6 +120,36 @@ function findLocation(position) {
   let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
   let apiUrl = `${apiEndingPoint}&lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let displayedForecast = document.querySelector("#forecast");
+  displayedForecast.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 5; index++) {
+    forecast = response.data.list[index];
+    displayedForecast.innerHTML += `<div class="col">
+                  <img
+                    src="http://openweathermap.org/img/wn/${
+                      forecast.weather[0].icon
+                    }@2x.png"
+                    alt="sunny"
+                    id="icon"
+                    class="forecastIcon"
+                  />
+                  <br />
+                  <strong>  ${formatForecastHours(forecast.dt * 1000)} </strong>
+                  <p>
+                            ${Math.round(forecast.main.temp_max)}º
+                    <br />
+                    <small> ${Math.round(forecast.main.temp_min)}º </small>
+                  </p>
+                </div>`;
+  }
 }
 
 function searchCity(city) {
@@ -114,6 +158,9 @@ function searchCity(city) {
   let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
   let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getLondonListTemperature() {
@@ -123,6 +170,9 @@ function getLondonListTemperature() {
   let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
   let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getTokyoListTemperature() {
@@ -132,6 +182,9 @@ function getTokyoListTemperature() {
   let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
   let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getNewYorkListTemperature() {
@@ -141,6 +194,9 @@ function getNewYorkListTemperature() {
   let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
   let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getMexicoCityListTemperature() {
@@ -150,6 +206,9 @@ function getMexicoCityListTemperature() {
   let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
   let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getRiodeJaneiroListTemperature() {
@@ -159,6 +218,9 @@ function getRiodeJaneiroListTemperature() {
   let apiEndingPoint = "https://api.openweathermap.org/data/2.5/weather?";
   let apiUrl = `${apiEndingPoint}q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 let citySearchEngine = document.querySelector("#city-search");
